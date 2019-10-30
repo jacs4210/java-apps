@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!-- Estándar para registrar el bean, class="nombrePaquete.nombreClase" -->
+	<!-- scope="singleton" o "prototype" , prototype permite obtener un identificador 
+		de memoria diferente por cada objeto que instancie. -->
+	<bean id="motor" class="co.edu.usbcali.demo.auto.Motor"
+		scope="singleton">
+		<property name="serial" value="VTG-56-09-3456"></property>
+		<property name="cilindraje" value="2500"></property>
+		<property name="electrico" value="false"></property>
+	</bean>
+
+	<bean id="vehiculo" class="co.edu.usbcali.demo.auto.Vehiculo">
+		<!-- Cuando se va a hacer referencia a una clase como propiedad, se utiliza 
+			el atributo ref y su valor será el nombre de la clase en minuscula -->
+		<property name="motor" ref="motor"></property>
+		<property name="color" value="Rojo"></property>
+		<property name="modelo" value="2020"></property>
+	</bean>
+
+</beans>
