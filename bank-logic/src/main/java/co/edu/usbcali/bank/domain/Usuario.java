@@ -1,52 +1,71 @@
 package co.edu.usbcali.bank.domain;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * The persistent class for the usuario database table.
  * 
  */
 @Entity
-@NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
+@NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="usu_usuario")
+	@Column(name = "usu_usuario")
+	@NotNull
+	@Size(min = 5, max = 15)
 	private String usuUsuario;
 
+	@NotNull
+	@Size(min = 1, max = 1)
 	private String activo;
 
+	@NotNull
+	@Size(min = 5, max = 25)
 	private String clave;
 
-	@Column(name="fecha_creacion")
+	@Column(name = "fecha_creacion")
 	private Timestamp fechaCreacion;
 
-	@Column(name="fecha_modificacion")
+	@Column(name = "fecha_modificacion")
 	private Timestamp fechaModificacion;
 
+	@NotNull
 	private BigDecimal identificacion;
 
+	@NotNull
+	@Size(min = 5, max = 50)
 	private String nombre;
 
-	@Column(name="usu_creador")
+	@Column(name = "usu_creador")
 	private String usuCreador;
 
-	@Column(name="usu_modificador")
+	@Column(name = "usu_modificador")
 	private String usuModificador;
 
-	//bi-directional many-to-one association to Transaccion
-	@OneToMany(mappedBy="usuario")
+	// bi-directional many-to-one association to Transaccion
+	@OneToMany(mappedBy = "usuario")
 	private List<Transaccion> transaccions;
 
-	//bi-directional many-to-one association to TipoUsuario
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="tius_id")
+	// bi-directional many-to-one association to TipoUsuario
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "tius_id")
+	@NotNull
 	private TipoUsuario tipoUsuario;
 
 	public Usuario() {

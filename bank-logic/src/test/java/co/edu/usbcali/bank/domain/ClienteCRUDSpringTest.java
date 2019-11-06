@@ -27,10 +27,9 @@ class ClienteCRUDSpringTest {
 
 	@Test
 	void test() {
-		assertNotNull(entityManager, "El entityManager no es nulo");
+		assertNotNull(entityManager, "entityManager nulo");
 	}
 
-	// readOnly: Cuando solamente serán consultas y no harán rollback o commit
 	@Test
 	@DisplayName("save")
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
@@ -50,40 +49,44 @@ class ClienteCRUDSpringTest {
 		TipoDocumento tipoDocumento = entityManager.find(TipoDocumento.class, 1L);
 		assertNotNull(tipoDocumento, "El tipo de documento es nulo");
 		cliente.setTipoDocumento(tipoDocumento);
-
+		
 		entityManager.persist(cliente);
-	}
 
+	}
+	
 	@Test
 	@DisplayName("findById")
 	@Transactional(readOnly = true)
 	void bTest() {
+
 		Cliente cliente = entityManager.find(Cliente.class, clieId);
 		assertNotNull(cliente, "Ya existe un cliente con el id: " + clieId);
-	}
 
+	}
+	
 	@Test
 	@DisplayName("update")
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	@Transactional(readOnly = true)
 	void cTest() {
 
 		Cliente cliente = entityManager.find(Cliente.class, clieId);
 		assertNotNull(cliente, "Ya existe un cliente con el id: " + clieId);
 
 		cliente.setActivo("N");
-
+		
 		entityManager.persist(cliente);
-	}
 
+	}
+	
 	@Test
 	@DisplayName("delete")
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	@Transactional(readOnly = true)
 	void dTest() {
 
 		Cliente cliente = entityManager.find(Cliente.class, clieId);
 		assertNotNull(cliente, "Ya existe un cliente con el id: " + clieId);
-
+		
 		entityManager.remove(cliente);
-	}
 
+	}
 }

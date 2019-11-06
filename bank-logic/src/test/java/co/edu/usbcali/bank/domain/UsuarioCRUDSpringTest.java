@@ -1,6 +1,7 @@
 package co.edu.usbcali.bank.domain;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.math.BigDecimal;
 
@@ -28,12 +29,12 @@ class UsuarioCRUDSpringTest {
 
 	@Test
 	void test() {
-		assertNotNull(entityManager, "El entityManager es nulo");
+		assertNotNull(entityManager, "entityManager nulo");
 	}
 
 	@Test
 	@DisplayName("save")
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	void aTest() {
 
 		Usuario usuario = entityManager.find(Usuario.class, usuUsuario);
@@ -51,37 +52,42 @@ class UsuarioCRUDSpringTest {
 		usuario.setTipoUsuario(tipoUsuario);
 
 		entityManager.persist(usuario);
-	}
 
+	}
+	
 	@Test
 	@DisplayName("findById")
 	@Transactional(readOnly = true)
 	void bTest() {
+
 		Usuario usuario = entityManager.find(Usuario.class, usuUsuario);
 		assertNotNull(usuario, "Ya existe un usuario con el id: " + usuUsuario);
-	}
 
+	}
+	
 	@Test
 	@DisplayName("update")
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	@Transactional(readOnly = true)
 	void cTest() {
 
 		Usuario usuario = entityManager.find(Usuario.class, usuUsuario);
 		assertNotNull(usuario, "Ya existe un usuario con el id: " + usuUsuario);
 
 		usuario.setActivo("N");
+		
+		entityManager.persist(usuario);
 
-		entityManager.merge(usuario);
 	}
-
+	
 	@Test
 	@DisplayName("delete")
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	@Transactional(readOnly = true)
 	void dTest() {
+
 		Usuario usuario = entityManager.find(Usuario.class, usuUsuario);
 		assertNotNull(usuario, "Ya existe un usuario con el id: " + usuUsuario);
 
 		entityManager.remove(usuario);
-	}
 
+	}
 }

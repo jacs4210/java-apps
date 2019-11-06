@@ -12,42 +12,52 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@Column(name = "clie_id")
-	
+	@NotNull
 	private Long clieId;
-	
-	
+
+	@NotNull
+	@Size(min = 1, max = 1)
 	private String activo;
-	
-	
+
+	@NotNull
+	@Size(min = 5, max = 50)
 	private String direccion;
-	
-	
+
+	@NotNull
+	@Size(min = 5, max = 50)
+	@Email
 	private String email;
-	
-	
+
+	@NotNull
+	@Size(min = 5, max = 50)
 	private String nombre;
-	
-	
+
+	@NotNull
+	@Size(min = 5, max = 50)
 	private String telefono;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "tdoc_id")
-	
+
 	private TipoDocumento tipoDocumento;
-	
+
 	@OneToMany(mappedBy = "cliente")
 	private List<Cuenta> cuentas;
 	@OneToMany(mappedBy = "cliente")
 	private List<CuentaRegistrada> cuentaRegistradas;
-	
+
 	@Column(name = "usu_creador")
 	private String usuCreador;
 	@Column(name = "usu_modificador")

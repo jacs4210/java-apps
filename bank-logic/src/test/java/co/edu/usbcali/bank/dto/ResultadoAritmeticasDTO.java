@@ -8,7 +8,7 @@ public class ResultadoAritmeticasDTO {
 	private BigDecimal min;
 	private Double avg;
 	private Long count;
-
+	
 	public ResultadoAritmeticasDTO(BigDecimal max, BigDecimal min, Double avg, Long count) {
 		super();
 		this.max = max;
@@ -52,5 +52,6 @@ public class ResultadoAritmeticasDTO {
 	public void setCount(Long count) {
 		this.count = count;
 	}
-
+	
+	
 }
