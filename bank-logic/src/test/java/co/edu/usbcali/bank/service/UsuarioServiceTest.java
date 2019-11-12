@@ -24,7 +24,7 @@ import co.edu.usbcali.bank.repository.TipoUsuarioRepository;
 @Rollback(false)
 class UsuarioServiceTest {
 
-	private static String usuUsuario = "homerojsimpson";
+	private final static String usuId = "homerojsimpson";
 
 	@Autowired
 	UsuarioService usuarioService;
@@ -43,13 +43,12 @@ class UsuarioServiceTest {
 	void aTest() {
 		Usuario usuario = new Usuario();
 		usuario.setActivo("S");
-		usuario.setUsuUsuario(usuUsuario);
+		usuario.setUsuUsuario(usuId);
 		usuario.setClave("contra123");
 		usuario.setIdentificacion(new BigDecimal(1061321456));
 		usuario.setNombre("Homero J. Simpson");
 
 		assertTrue(tipoUsuarioRepository.findById(1L).isPresent());
-
 		usuario.setTipoUsuario(tipoUsuarioRepository.findById(1L).get());
 
 		try {
@@ -62,17 +61,15 @@ class UsuarioServiceTest {
 	@Test
 	@DisplayName("findById")
 	void bTest() {
-		Optional<Usuario> usuarioOptional = usuarioService.findById(usuUsuario);
-
-		assertNotNull(usuarioOptional.isPresent(), "El usuario " + usuUsuario + " no existe");
+		Optional<Usuario> usuarioOptional = usuarioService.findById(usuId);
+		assertTrue(usuarioOptional.isPresent(), "El usuario con id: " + usuId + " no existe.");
 	}
 
 	@Test
 	@DisplayName("update")
 	void cTest() {
-		Optional<Usuario> usuarioOptional = usuarioService.findById(usuUsuario);
-
-		assertNotNull(usuarioOptional.isPresent(), "El usuario " + usuUsuario + " no existe");
+		Optional<Usuario> usuarioOptional = usuarioService.findById(usuId); 
+		assertTrue(usuarioOptional.isPresent(), "El usuario con id: " + usuId + " no existe.");
 
 		Usuario usuario = usuarioOptional.get();
 		usuario.setActivo("N");
@@ -88,10 +85,9 @@ class UsuarioServiceTest {
 	@DisplayName("delete")
 	void dTest() {
 		try {
-			usuarioService.deleteById(usuUsuario);
+			usuarioService.deleteById(usuId);
 		} catch (Exception e) {
 			assertNull(e, e.getMessage());
 		}
 	}
-
 }

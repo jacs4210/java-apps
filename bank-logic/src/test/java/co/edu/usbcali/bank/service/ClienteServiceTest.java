@@ -49,7 +49,6 @@ class ClienteServiceTest {
 		cliente.setTelefono("8388378");
 
 		assertTrue(tipoDocumentoRepository.findById(1L).isPresent());
-
 		cliente.setTipoDocumento(tipoDocumentoRepository.findById(1L).get());
 
 		try {
@@ -63,16 +62,14 @@ class ClienteServiceTest {
 	@DisplayName("findById")
 	void bTest() {
 		Optional<Cliente> clienteOptional = clienteService.findById(clieId);
-
-		assertTrue(clienteOptional.isPresent(), "El cliente con id: " + clieId + " no existe");
+		assertTrue(clienteOptional.isPresent(), "El cliente con id: " + clieId + " no existe.");
 	}
 
 	@Test
 	@DisplayName("update")
 	void cTest() {
 		Optional<Cliente> clienteOptional = clienteService.findById(clieId);
-
-		assertTrue(clienteOptional.isPresent(), "El cliente con id: " + clieId + " no existe");
+		assertTrue(clienteOptional.isPresent(), "El cliente con id: " + clieId + " no existe.");
 
 		Cliente cliente = clienteOptional.get();
 		cliente.setActivo("N");
@@ -93,5 +90,4 @@ class ClienteServiceTest {
 			assertNull(e, e.getMessage());
 		}
 	}
-
 }

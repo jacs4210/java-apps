@@ -26,7 +26,7 @@ import co.edu.usbcali.bank.repository.TipoDocumentoRepository;
 @ExtendWith(MockitoExtension.class)
 class ClienteServiceTestMockito {
 
-	private final static Long clieId = 7890L;
+	private final static Long clieId = 1L;
 
 	@InjectMocks
 	ClienteService clienteService = new ClienteServiceImpl();
@@ -36,23 +36,23 @@ class ClienteServiceTestMockito {
 
 	@Mock
 	ClienteRepository clienteRepository;
-
+	
 	@Mock
 	Validator validator;
 
 	Cliente cliente;
-
+	
 	@BeforeEach
 	void beforeEach() {
 		assertNotNull(clienteService, "El clienteService es nulo");
 		assertNotNull(tipoDocumentoRepository, "El tipoDocumentoRepository es nulo");
 		TipoDocumento tipoDocumento = new TipoDocumento();
-		tipoDocumento.setTdocId(1L);
 		tipoDocumento.setActivo("S");
+		tipoDocumento.setTdocId(1L);
 		tipoDocumento.setNombre("CEDULA");
-
+		
 		when(tipoDocumentoRepository.findById(1L)).thenReturn(Optional.ofNullable(tipoDocumento));
-
+		
 		cliente = new Cliente();
 		cliente.setActivo("S");
 		cliente.setClieId(clieId);
@@ -62,7 +62,6 @@ class ClienteServiceTestMockito {
 		cliente.setTelefono("8388378");
 
 		assertTrue(tipoDocumentoRepository.findById(1L).isPresent());
-
 		cliente.setTipoDocumento(tipoDocumentoRepository.findById(1L).get());
 		cliente.setCuentaRegistradas(new ArrayList<>());
 		cliente.setCuentas(new ArrayList<>());
@@ -80,7 +79,6 @@ class ClienteServiceTestMockito {
 		cliente.setTelefono("8388378");
 
 		assertTrue(tipoDocumentoRepository.findById(1L).isPresent());
-
 		cliente.setTipoDocumento(tipoDocumentoRepository.findById(1L).get());
 
 		try {
@@ -93,19 +91,19 @@ class ClienteServiceTestMockito {
 	@Test
 	@DisplayName("findById")
 	void bTest() {
+
 		when(clienteRepository.findById(clieId)).thenReturn(Optional.ofNullable(cliente));
 		Optional<Cliente> clienteOptional = clienteService.findById(clieId);
-
-		assertTrue(clienteOptional.isPresent(), "El cliente con id: " + clieId + " no existe");
+		assertTrue(clienteOptional.isPresent(), "El cliente con id: " + clieId + " no existe.");
 	}
 
 	@Test
 	@DisplayName("update")
 	void cTest() {
+		
 		when(clienteRepository.findById(clieId)).thenReturn(Optional.ofNullable(cliente));
 		Optional<Cliente> clienteOptional = clienteService.findById(clieId);
-
-		assertTrue(clienteOptional.isPresent(), "El cliente con id: " + clieId + " no existe");
+		assertTrue(clienteOptional.isPresent(), "El cliente con id: " + clieId + " no existe.");
 
 		Cliente cliente = clienteOptional.get();
 		cliente.setActivo("N");
@@ -120,12 +118,11 @@ class ClienteServiceTestMockito {
 	@Test
 	@DisplayName("delete")
 	void dTest() {
-		when(clienteRepository.findById(clieId)).thenReturn(Optional.ofNullable(cliente));
 		try {
+			when(clienteRepository.findById(clieId)).thenReturn(Optional.ofNullable(cliente));
 			clienteService.deleteById(clieId);
 		} catch (Exception e) {
 			assertNull(e, e.getMessage());
 		}
 	}
-
 }

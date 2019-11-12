@@ -59,18 +59,14 @@ public class ClienteServiceImpl implements ClienteService {
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public Cliente save(Cliente entity) throws Exception {
-
-		// Se encarga de validar que el cliente ingresado contemple lo minimo necesario
-		// para poder tratarlo.
 		validar(entity);
-
-		if (clienteRepository.findById(entity.getClieId()).isPresent() == true) {
-			throw new Exception("El cliente con Id: " + entity.getClieId() + " ya existe");
+		if (clienteRepository.findById(entity.getClieId()).isPresent()) {
+			throw new Exception("El cliente con id: " + entity.getClieId() + " ya existe.");
 		}
-
 		if (entity.getTipoDocumento() == null || entity.getTipoDocumento().getTdocId() == null
-				|| tipoDocumentoRepository.findById(entity.getTipoDocumento().getTdocId()).isPresent() == false) {
-			throw new Exception("El tipo de documento con Id: " + entity.getTipoDocumento().getTdocId() + " no existe");
+				|| !tipoDocumentoRepository.findById(entity.getTipoDocumento().getTdocId()).isPresent()) {
+			throw new Exception(
+					"El tipo de documento con id: " + entity.getTipoDocumento().getTdocId() + " no existe.");
 		}
 
 		return clienteRepository.save(entity);
@@ -79,18 +75,14 @@ public class ClienteServiceImpl implements ClienteService {
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public Cliente update(Cliente entity) throws Exception {
-
-		// Se encarga de validar que el cliente ingresado contemple lo minimo necesario
-		// para poder tratarlo.
 		validar(entity);
-
-		if (clienteRepository.findById(entity.getClieId()).isPresent() == false) {
-			throw new Exception("El cliente con Id: " + entity.getClieId() + " no existe");
+		if (!clienteRepository.findById(entity.getClieId()).isPresent()) {
+			throw new Exception("El cliente con id: " + entity.getClieId() + " no existe.");
 		}
-
 		if (entity.getTipoDocumento() == null || entity.getTipoDocumento().getTdocId() == null
-				|| tipoDocumentoRepository.findById(entity.getTipoDocumento().getTdocId()).isPresent() == false) {
-			throw new Exception("El tipo de documento con Id: " + entity.getTipoDocumento().getTdocId() + " no existe");
+				|| !tipoDocumentoRepository.findById(entity.getTipoDocumento().getTdocId()).isPresent()) {
+			throw new Exception(
+					"El tipo de documento con id: " + entity.getTipoDocumento().getTdocId() + " no existe.");
 		}
 
 		return clienteRepository.save(entity);
@@ -99,42 +91,31 @@ public class ClienteServiceImpl implements ClienteService {
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void delete(Cliente entity) throws Exception {
-		// Se encarga de validar que el cliente ingresado contemple lo minimo necesario
-		// para poder tratarlo.
 		validar(entity);
 
-		if (clienteRepository.findById(entity.getClieId()).isPresent() == false) {
-			throw new Exception("El cliente con Id: " + entity.getClieId() + " no existe");
+		if (!clienteRepository.findById(entity.getClieId()).isPresent()) {
+			throw new Exception("El cliente con id: " + entity.getClieId() + " no existe.");
 		}
-
 		entity = clienteRepository.findById(entity.getClieId()).get();
-
-		// Si el cliente tiene cuentas registradas, debe de elevar una excepción.
 		if (entity.getCuentaRegistradas().size() > 0) {
-			throw new Exception("El cliente con Id: " + entity.getClieId() + " tiene cuentas registradas");
+			throw new Exception("El cliente con id: " + entity.getClieId() + " tiene cuentas registradas.");
 		}
-
-		// Si el cliente tiene cuentas asociadas, debe de elevar una excepción.
 		if (entity.getCuentas().size() > 0) {
-			throw new Exception("El cliente con Id: " + entity.getClieId() + " tiene cuentas asociadas");
+			throw new Exception("El cliente con id: " + entity.getClieId() + " tiene cuentas asociadas.");
 		}
 
 		clienteRepository.delete(entity);
-
 	}
 
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void deleteById(Long id) throws Exception {
-
-		if (id == null || id < 0) {
-			throw new Exception("El id del cliente es obligatorio, no puede ser nulo o menor a 1");
+		if (id == null || id < 1) {
+			throw new Exception("El id es obligatorio, no puede ser nulo o menor a 1");
 		}
-
-		if (findById(id).isPresent() == false) {
-			throw new Exception("El cliente con Id: " + id + " no existe");
+		if (!findById(id).isPresent()) {
+			throw new Exception("El cliente con id: " + id + " no existe.");
 		}
-
 		delete(findById(id).get());
 
 	}
@@ -150,5 +131,4 @@ public class ClienteServiceImpl implements ClienteService {
 	public List<Cliente> findAll() {
 		return clienteRepository.findAll();
 	}
-
 }

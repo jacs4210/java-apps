@@ -10,10 +10,10 @@ public interface GenericService<T, ID> {
 	T update(T entity) throws Exception;
 
 	void delete(T entity) throws Exception;
-
+	
 	void deleteById(ID id) throws Exception;
-
-	Optional<T> findById(ID id);
+	
+	Optional<T> findById(ID id); 
 
 	List<T> findAll();
 

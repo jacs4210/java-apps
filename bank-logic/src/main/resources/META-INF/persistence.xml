@@ -15,7 +15,7 @@
 		<class>co.edu.usbcali.bank.domain.Usuario</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:postgresql://localhost:5432/bank-logic" />
+				value="jdbc:postgresql://localhost:5432/bank" />
 			<property name="javax.persistence.jdbc.user"
 				value="postgres" />
 			<property name="javax.persistence.jdbc.password"

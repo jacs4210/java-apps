@@ -16,19 +16,19 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+
 /**
  * The persistent class for the usuario database table.
  * 
  */
 @Entity
-@NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
+@NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "usu_usuario")
+	@Column(name="usu_usuario")
 	@NotNull
-	@Size(min = 5, max = 15)
 	private String usuUsuario;
 
 	@NotNull
@@ -36,36 +36,35 @@ public class Usuario implements Serializable {
 	private String activo;
 
 	@NotNull
-	@Size(min = 5, max = 25)
+	@Size(min = 5, max = 20)
 	private String clave;
 
-	@Column(name = "fecha_creacion")
+	@Column(name="fecha_creacion")
 	private Timestamp fechaCreacion;
 
-	@Column(name = "fecha_modificacion")
+	@Column(name="fecha_modificacion")
 	private Timestamp fechaModificacion;
 
 	@NotNull
 	private BigDecimal identificacion;
 
 	@NotNull
-	@Size(min = 5, max = 50)
+	@Size(min = 5, max = 100)
 	private String nombre;
 
-	@Column(name = "usu_creador")
+	@Column(name="usu_creador")
 	private String usuCreador;
 
-	@Column(name = "usu_modificador")
+	@Column(name="usu_modificador")
 	private String usuModificador;
 
-	// bi-directional many-to-one association to Transaccion
-	@OneToMany(mappedBy = "usuario")
+	//bi-directional many-to-one association to Transaccion
+	@OneToMany(mappedBy="usuario")
 	private List<Transaccion> transaccions;
 
-	// bi-directional many-to-one association to TipoUsuario
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "tius_id")
-	@NotNull
+	//bi-directional many-to-one association to TipoUsuario
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="tius_id")
 	private TipoUsuario tipoUsuario;
 
 	public Usuario() {

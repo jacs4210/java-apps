@@ -60,14 +60,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public Usuario save(Usuario entity) throws Exception {
 		validar(entity);
-
 		if (usuarioRepository.findById(entity.getUsuUsuario()).isPresent()) {
-			throw new Exception("El usuario con Id: " + entity.getUsuUsuario() + " ya existe");
+			throw new Exception("El usuario con id: " + entity.getUsuUsuario() + " ya existe.");
 		}
-
 		if (entity.getTipoUsuario() == null || entity.getTipoUsuario().getTiusId() == null
 				|| !tipoUsuarioRepository.findById(entity.getTipoUsuario().getTiusId()).isPresent()) {
-			throw new Exception("El tipo de usuario con Id: " + entity.getTipoUsuario().getTiusId() + " no existe");
+			throw new Exception("El tipo de usuario con id: " + entity.getTipoUsuario().getTiusId() + " no existe.");
 		}
 
 		return usuarioRepository.save(entity);
@@ -77,14 +75,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public Usuario update(Usuario entity) throws Exception {
 		validar(entity);
-
 		if (!usuarioRepository.findById(entity.getUsuUsuario()).isPresent()) {
-			throw new Exception("El usuario con Id: " + entity.getUsuUsuario() + " no existe");
+			throw new Exception("El usuario con id: " + entity.getUsuUsuario() + " no existe.");
 		}
-
 		if (entity.getTipoUsuario() == null || entity.getTipoUsuario().getTiusId() == null
 				|| !tipoUsuarioRepository.findById(entity.getTipoUsuario().getTiusId()).isPresent()) {
-			throw new Exception("El tipo de usuario con Id: " + entity.getTipoUsuario().getTiusId() + " no existe");
+			throw new Exception("El tipo de usuario con id: " + entity.getTipoUsuario().getTiusId() + " no existe.");
 		}
 
 		return usuarioRepository.save(entity);
@@ -93,35 +89,29 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void delete(Usuario entity) throws Exception {
-
 		validar(entity);
 
 		if (!usuarioRepository.findById(entity.getUsuUsuario()).isPresent()) {
-			throw new Exception("El usuario con Id: " + entity.getUsuUsuario() + " no existe");
+			throw new Exception("El usuario con id: " + entity.getUsuUsuario() + " no existe.");
 		}
-
-		Usuario usuario = usuarioRepository.findById(entity.getUsuUsuario()).get();
-
-		if (usuario.getTransaccions().size() > 0) {
-			throw new Exception("El usuario con Id: " + entity.getUsuUsuario() + " tiene transacciones realizadas");
+		entity = usuarioRepository.findById(entity.getUsuUsuario()).get();
+		if (entity.getTransaccions().size() > 0) {
+			throw new Exception("El usuario con id: " + entity.getUsuUsuario() + " tiene transacciones asociadas.");
 		}
-
 		usuarioRepository.delete(entity);
-
 	}
 
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void deleteById(String id) throws Exception {
 		if (id == null || id.isEmpty()) {
-			throw new Exception("El id del usuario es obligatorio, no puede ser nulo o vacío");
+			throw new Exception("El id es obligatorio, no puede ser nulo o vacío");
 		}
-
 		if (!findById(id).isPresent()) {
-			throw new Exception("El usuario con Id: " + id + " no existe");
+			throw new Exception("El usuario con id: " + id + " no existe.");
 		}
-
 		delete(findById(id).get());
+
 	}
 
 	@Override
@@ -135,5 +125,4 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public List<Usuario> findAll() {
 		return usuarioRepository.findAll();
 	}
-
 }
