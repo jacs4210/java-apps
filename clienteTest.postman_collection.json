@@ -1,0 +1,111 @@
+{
+	"variables": [],
+	"info": {
+		"name": "clienteTest",
+		"_postman_id": "2ac5040d-6228-7d33-8829-ecbdd3529fa2",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "findById",
+			"request": {
+				"url": "http://localhost:8080/bank-web/api/cliente/findById/3001",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "findAll",
+			"request": {
+				"url": "http://localhost:8080/bank-web/api/cliente/findAll",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "save",
+			"request": {
+				"url": "http://localhost:8080/bank-web/api/cliente/save",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"clieId\": 3001,\n    \"activo\": \"S\",\n    \"direccion\": \"94 Hintze Drive\",\n    \"email\": \"hdownes0@bloomberg.com\",\n    \"nombre\": \"Diego Pinto\",\n    \"telefono\": \"62-(594)716-0300\",\n    \"tdocId\": 3\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "deleteById",
+			"request": {
+				"url": "http://localhost:8080/bank-web/api/cliente/deleteById/3001",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"url": "http://localhost:8080/bank-web/api/cliente/delete",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"clieId\": 3001,\n    \"activo\": \"S\",\n    \"direccion\": \"94 Hintze Drive\",\n    \"email\": \"hdownes0@bloomberg.com\",\n    \"nombre\": \"Diego Pinto Muñoz\",\n    \"telefono\": \"62-(594)716-0300\",\n    \"tdocId\": 3\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"url": "http://localhost:8080/bank-web/api/cliente/update",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"clieId\": 3001,\n    \"activo\": \"S\",\n    \"direccion\": \"94 Hintze Drive\",\n    \"email\": \"hdownes0@bloomberg.com\",\n    \"nombre\": \"Diego Pinto Muñoz\",\n    \"telefono\": \"62-(594)716-0300\",\n    \"tdocId\": 3\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
