@@ -1,0 +1,396 @@
+{
+	"info": {
+		"_postman_id": "6e534c71-e4ef-4d16-a017-f8ea8a3dbbe0",
+		"name": "Bank-web",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/bank-web/api/cliente/findById/3001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bank-web",
+								"api",
+								"cliente",
+								"findById",
+								"3001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:9091/cliente/findAll",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "9091",
+							"path": [
+								"cliente",
+								"findAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"clieId\": 3001,\n    \"activo\": \"S\",\n    \"direccion\": \"94 Hintze Drive\",\n    \"email\": \"hdownes0@bloomberg.com\",\n    \"nombre\": \"Diego Pinto\",\n    \"telefono\": \"62-(594)716-0300\",\n    \"tdocId\": 3\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/bank-web/api/cliente/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bank-web",
+								"api",
+								"cliente",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteById",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/bank-web/api/cliente/deleteById/3001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bank-web",
+								"api",
+								"cliente",
+								"deleteById",
+								"3001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"clieId\": 3001,\n    \"activo\": \"S\",\n    \"direccion\": \"94 Hintze Drive\",\n    \"email\": \"hdownes0@bloomberg.com\",\n    \"nombre\": \"Diego Pinto Muñoz\",\n    \"telefono\": \"62-(594)716-0300\",\n    \"tdocId\": 3\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/bank-web/api/cliente/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bank-web",
+								"api",
+								"cliente",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transacciones",
+			"item": [
+				{
+					"name": "retirar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"cuenId\": \"4640-0341-9387-5781\",\n\t\"valor\": 50000,\n\t\"usuUsuario\": \"callbrook0\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/bank-web/api/transaction/retirar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bank-web",
+								"api",
+								"transaction",
+								"retirar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "consignar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"cuenId\": \"4640-0341-9387-5781\",\n\t\"valor\": 50000,\n\t\"usuUsuario\": \"callbrook0\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/bank-web/api/transaction/consignar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bank-web",
+								"api",
+								"transaction",
+								"consignar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "transferir",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"cuenIdOrigen\": \"4640-0341-9387-5781\",\n\t\"cuenIdDestino\": \"1630-2511-2937-7299\",\n\t\"valor\": 50000,\n\t\"usuUsuario\": \"callbrook0\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/bank-web/api/transaction/transferir",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bank-web",
+								"api",
+								"transaction",
+								"transferir"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/bank-web/api/usuario/findById/callbrook0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bank-web",
+								"api",
+								"usuario",
+								"findById",
+								"callbrook0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/bank-web/api/usuario/findAll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bank-web",
+								"api",
+								"usuario",
+								"findAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"usuUsuario\": \"jcuartas\",\n    \"activo\": \"S\",\n    \"clave\": \"4h5yaK\",\n    \"identificacion\": 1,\n    \"nombre\": \"Carmela Allbrook\",\n    \"tiusId\": 3\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/bank-web/api/usuario/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bank-web",
+								"api",
+								"usuario",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteById",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/bank-web/api/usuario/deleteById/callbrook0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bank-web",
+								"api",
+								"usuario",
+								"deleteById",
+								"callbrook0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"usuUsuario\": \"jcuartas\",\n    \"activo\": \"S\",\n    \"clave\": \"4h5asyaK\",\n    \"identificacion\": 1,\n    \"nombre\": \"Carmela Allbrook\",\n    \"tiusId\": 3\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/bank-web/api/usuario/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bank-web",
+								"api",
+								"usuario",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
